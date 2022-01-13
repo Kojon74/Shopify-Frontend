@@ -2,8 +2,36 @@ body {
   background-color: #202020;
   color: #d0d0d0;
 }
+
 h1 {
   text-align: center;
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: 0px -800px;
+  }
+  100% {
+    background-position: 0px 800px;
+  }
+}
+
+.loading {
+  max-width: 90%;
+  width: 600px;
+  height: 600px;
+  margin: auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  /* background-color: #808080; */
+
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: linear-gradient(to top, #808080 0%, #a0a0a0 10%, #808080 20%);
+  position: relative;
 }
 
 .apod-card {
@@ -16,7 +44,7 @@ h1 {
   overflow: hidden;
 }
 
-img {
+.media {
   width: 100%;
   object-fit: cover;
 }
@@ -26,10 +54,11 @@ img {
 }
 
 .date {
-  margin: 5px 10px 5px 10px;
+  margin: 5px 10px 10px 10px;
   color: #606060;
 }
 
-.like {
-  margin: 5px 10px 10px 10px;
+.image-desc {
+  display: flex;
+  justify-content: space-between;
 }

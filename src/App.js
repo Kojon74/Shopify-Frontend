@@ -5,7 +5,10 @@ import "./App.css";
 const API_KEY = "QCOhw34iRN2rgjqkcHja3IA5NeKb0i8oP9wPiF6W";
 
 function App() {
+  const [loading, setLoading] = useState(true);
   const [APODList, setAPODList] = useState([]);
+
+  document.body.style.overflow = "hidden";
 
   useEffect(() => {
     fetch(
@@ -15,16 +18,22 @@ function App() {
       .then((resp) => resp.json())
       .then((data) => {
         setAPODList(data.reverse());
-        console.log(data[0]);
+        setLoading(false);
+        document.body.style.overflow = "auto";
       });
   }, []);
 
   return (
-    <div className="page-root">
+    <div>
       <h1>Spacestagram</h1>
-      {APODList.map((APOD) => (
-        <APODCard {...APOD} />
-      ))}
+      {loading ? (
+        <div className="loading-cont">
+          <div className="loading" />
+          <div className="loading" />
+        </div>
+      ) : (
+        APODList.map((APOD) => <APODCard {...APOD} key={APOD.date} />)
+      )}
     </div>
   );
 }
