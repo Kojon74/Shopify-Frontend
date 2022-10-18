@@ -11,9 +11,11 @@ function App() {
   document.body.style.overflow = "hidden";
 
   useEffect(() => {
+    let startDate = new Date();
+    startDate.setDate(startDate.getDate() - 10);
+    const dateStr = startDate.toISOString().split("T")[0];
     fetch(
-      "https://api.nasa.gov/planetary/apod?start_date=2022-01-01&api_key=" +
-        API_KEY
+      `https://api.nasa.gov/planetary/apod?start_date=${dateStr}&api_key=${API_KEY}`
     )
       .then((resp) => resp.json())
       .then((data) => {
